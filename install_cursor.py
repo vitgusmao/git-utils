@@ -148,6 +148,11 @@ def create_wrapper(install_root: Path, name: str) -> Path:
         f.write("#!/usr/bin/env bash\n")
         f.write('set -euo pipefail\n')
         f.write(f'export CHROME_DEVEL_SANDBOX="{install_root}/current/chrome-sandbox"\n')
+        # Ensure bundled libraries like libffmpeg.so are discoverable
+        f.write(
+            f'export LD_LIBRARY_PATH="{install_root}/current:{install_root}/current/lib:'
+            f'{install_root}/current/usr/lib:{install_root}/current/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"\n'
+        )
         f.write(f'exec "{install_root}/current/AppRun" "$@"\n')
     wrapper.chmod(0o755)
     print(f"[*] Created launcher: {wrapper}")
