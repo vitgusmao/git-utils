@@ -18,3 +18,13 @@ Interactive script to configure a GPG signing key for all Git repositories under
 ```bash
 python3 setup_git_gpg_config.py
 ```
+
+### `install_cursor.py`
+
+Securely installs the Cursor AppImage on Ubuntu 24.04. It extracts the AppImage, configures the Chromium sandbox, adds a wrapper launcher, and optionally creates a desktop entry.
+
+#### 🔧 Usage
+
+```bash
+python3 install_cursor.py /path/to/Cursor-<version>-x86_64.AppImage
+```
